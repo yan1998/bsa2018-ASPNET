@@ -1,0 +1,25 @@
+﻿@model List<User>
+@{
+    ViewData["Title"] = "Fourth query";
+}
+
+<h2>Fourth query</h2>
+<div class="row">
+    @foreach (var user in Model)
+    {
+        <div class="col-xs-12" style="margin-bottom:50px;">
+            <div class="col-xs-2">
+                <img src="@user.Avatar" />
+            </div>
+            <div class="col-xs-10">
+                <h3>@user.Name - @user.Email</h3>
+                <ul>
+                @foreach (var toDo in user.ToDos)
+                {
+                    <li>@toDo.Name - @toDo.IsComplete - <span class="badge">@toDo.CreateAt.ToString("d")</span></li>
+                }
+                    </ul>
+            </div>
+        </div>
+    }
+</div>

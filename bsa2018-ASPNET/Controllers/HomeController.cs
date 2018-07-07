@@ -69,6 +69,12 @@ namespace bsa2018_ASPNET.Controllers
             return View(queryResult);
         }
 
+        [HttpGet]
+        public IActionResult Fourth()
+        {
+            return View(users.FourthQuery());
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
