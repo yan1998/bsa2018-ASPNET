@@ -181,15 +181,15 @@ namespace bsa2018_ASPNET.Services
             return result;
         }
 
-        public (Post, Comment,Comment,int) SixthQuery(int idPost)
+        public Tuple<Post, Comment, Comment,int> SixthQuery(int idPost)
         {
             var result = Users.SelectMany(u => u.Posts)
                 .Where(p => p.Id == idPost)
-                .Select(p => (
-                    Post: p,
-                    LongestComment: p.Comments.OrderByDescending(c => c.Body).FirstOrDefault(),
-                    LikestComment: p.Comments.OrderByDescending(c => c.Likes).FirstOrDefault(),
-                    Count: p.Comments.Where(c => c.Likes == 0 || c.Body.Length < 80).Count()
+                .Select(p => ( new Tuple<Post, Comment, Comment, int>(
+                    p,
+                    p.Comments.OrderByDescending(c => c.Body).FirstOrDefault(),
+                    p.Comments.OrderByDescending(c => c.Likes).FirstOrDefault(),
+                    p.Comments.Where(c => c.Likes == 0 || c.Body.Length < 80).Count())
                 )).FirstOrDefault();
             return result;
         }

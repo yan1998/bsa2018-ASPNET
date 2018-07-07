@@ -95,6 +95,19 @@ namespace bsa2018_ASPNET.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Sixth()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Sixth(int postId)
+        {
+            var queryResult = users.SixthQuery(postId);
+            return View(queryResult);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

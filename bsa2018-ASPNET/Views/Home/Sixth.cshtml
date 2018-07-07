@@ -1,0 +1,24 @@
+﻿@model Tuple<Post, Comment, Comment, int>
+@{
+    ViewData["Title"] = "Sixth query";
+}
+
+<h2>Sixth query</h2>
+
+@using (Html.BeginForm("Sixth", "Home"))
+{
+    <input type="text" id="postId" name="postId" placeholder="Enter post id" />
+    <input type="submit" value="Get result" />
+}
+<br />
+@if (Model != null)
+{
+    <h4>@Model.Item1</h4>
+    <p>A comment with the biggest body: @Model.Item2</p>
+    <p>A comment with the biggest count of likes: @Model.Item3</p>
+    <p>Count od commentaries with 0 likes or body length > 80: @Model.Item4</p>
+}
+else
+{ 
+    <p>Id is incorrect</p>
+}
