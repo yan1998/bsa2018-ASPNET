@@ -56,6 +56,19 @@ namespace bsa2018_ASPNET.Controllers
             return View(queryResult);
         }
 
+        [HttpGet]
+        public IActionResult Third()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Third(int userId)
+        {
+            var queryResult = users.ThirdQuery(userId);
+            return View(queryResult);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
