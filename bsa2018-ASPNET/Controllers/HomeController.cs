@@ -11,14 +11,37 @@ namespace bsa2018_ASPNET.Controllers
 {
     public class HomeController : Controller
     {
+        private UsersService users;
 
+        public HomeController(UsersService users)
+        {
+            this.users = users;
+        }
 
         public IActionResult Index()
         {
             return View();
         }
-        
 
+        [HttpGet]
+        public IActionResult First()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult First(int userId)
+        {
+            try
+            {
+                var queryResult = users.FirstQuery(userId);
+                return View(queryResult);
+            }
+            catch (Exception)
+            {
+                return Content("Id is not correct!");
+            }
+        }
 
         public IActionResult Error()
         {
