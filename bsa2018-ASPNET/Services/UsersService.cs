@@ -18,6 +18,8 @@ namespace bsa2018_ASPNET.Services
                 Users=LoadAsync().Result;
         }
 
+        #region LoadData
+
         private async Task<List<User>> LoadAsync()
         {
             string page = "https://5b128555d50a5c0014ef1204.mockapi.io/";
@@ -121,5 +123,78 @@ namespace bsa2018_ASPNET.Services
             }
             return comments;
         }
+
+        #endregion
+
+        #region Queries
+
+        public List<(Post, int)> FirstQuery(int idUser)
+        {
+            var counts = Users.Where(u => u.Id == idUser)
+                .First()
+                .Posts.Select(p => (
+                    Post: p,
+                    CountComments: p.Comments.Count
+                )).ToList();
+            return counts;
+        }
+
+        public List<Comment> SecondQuery(int idUser)
+        {
+            var comments = Users.Where(u => u.Id == idUser)
+                .SelectMany(u => u.Posts)
+                .Where(p => p.Body.Length < 50)
+                .SelectMany(p => p.Comments)
+                .ToList();
+            return comments;
+        }
+
+        public List<(int,string)> ThirdQuery(int idUser)
+        {
+            var toDos = Users.Where(u => u.Id == idUser)
+                .SelectMany(u => u.ToDos)
+                .Where(td => td.IsComplete)
+                .Select(td => (Id: td.Id, Name: td.Name))
+                .ToList();
+            return toDos;
+        }
+
+        public List<User> FourthQuery()
+        {
+            var users = Users.OrderBy(u => u.Name)
+                .Select(u => { u.ToDos = u.ToDos.OrderByDescending(td => td.Name.Length).ToList(); return u; })
+                .ToList();
+            return users;
+        }
+
+        public (User,Post,int,int,Post,Post) FifthQuery(int idUser)
+        {
+            var result = Users.Where(u => u.Id == idUser)
+                .Select(u => (
+                    User: u,
+                    LastPost: u.Posts.OrderByDescending(c => c.CreateAt).FirstOrDefault(),
+                    CommentsCount: 0,
+                    CountUncompletedTodos: u.ToDos.Where(td => !td.IsComplete).Count(),
+                    MaxCommentPost: u.Posts.Where(p => p.Body.Length > 80).OrderByDescending(p => p.Comments).FirstOrDefault(),
+                    MaxLikesPost: u.Posts.OrderByDescending(p => p.Likes).FirstOrDefault()
+                )).FirstOrDefault();
+            result.CommentsCount = result.LastPost.Comments.Count;
+            return result;
+        }
+
+        public (Post, Comment,Comment,int) SixthQuery(int idPost)
+        {
+            var result = Users.SelectMany(u => u.Posts)
+                .Where(p => p.Id == idPost)
+                .Select(p => (
+                    Post: p,
+                    LongestComment: p.Comments.OrderByDescending(c => c.Body).FirstOrDefault(),
+                    LikestComment: p.Comments.OrderByDescending(c => c.Likes).FirstOrDefault(),
+                    Count: p.Comments.Where(c => c.Likes == 0 || c.Body.Length < 80).Count()
+                )).FirstOrDefault();
+            return result;
+        }
+
+        #endregion
     }
 }
