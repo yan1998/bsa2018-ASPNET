@@ -43,6 +43,19 @@ namespace bsa2018_ASPNET.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Second()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Second(int userId)
+        {
+            var queryResult = users.SecondQuery(userId);
+            return View(queryResult);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
