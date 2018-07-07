@@ -1,0 +1,32 @@
+﻿@model Tuple<User, Post, int, int, Post, Post>
+@{
+    ViewData["Title"] = "Fifth query";
+}
+
+<h2>Fifth query</h2>
+
+@using (Html.BeginForm("Fifth", "Home"))
+{
+    <input type="text" id="userId" name="userId" placeholder="Enter user id" />
+    <input type="submit" value="Get result" />
+}
+<br />
+@if (Model != null)
+{
+    <div id="result" class="row">
+        <div class="col-xs-2">
+            <img src="@Model.Item1.Avatar" />
+        </div>
+        <div class="col-xs-10">
+            <h4>@Model.Item1.Name</h4>
+            <h4>@Model.Item1.Email</h4>
+            <h4>@Model.Item1.Address</h4>
+        </div>
+    </div>
+    <br />
+    <p>Last user post: @Model.Item2</p>
+    <p>Count of commented on last post: @Model.Item3</p>
+    <p>Count of uncompleted tasks: @Model.Item4</p>
+    <p>The most popular post (with body comment over 80 symbols): @Model.Item5</p>
+    <p>The most popular post (with the biggest count of likes): @Model.Item6</p>
+}

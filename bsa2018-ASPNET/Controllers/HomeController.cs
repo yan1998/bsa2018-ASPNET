@@ -75,6 +75,26 @@ namespace bsa2018_ASPNET.Controllers
             return View(users.FourthQuery());
         }
 
+        [HttpGet]
+        public IActionResult Fifth()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Fifth(int userId)
+        {
+            try
+            {
+                var queryResult = users.FifthQuery(userId);
+                return View(queryResult);
+            }
+            catch (Exception)
+            {
+                return Content("Id is not correct!");
+            }
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

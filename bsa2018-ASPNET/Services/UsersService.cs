@@ -167,18 +167,17 @@ namespace bsa2018_ASPNET.Services
             return users;
         }
 
-        public (User,Post,int,int,Post,Post) FifthQuery(int idUser)
+        public Tuple<User, Post, int, int, Post, Post> FifthQuery(int idUser)
         {
             var result = Users.Where(u => u.Id == idUser)
-                .Select(u => (
-                    User: u,
-                    LastPost: u.Posts.OrderByDescending(c => c.CreateAt).FirstOrDefault(),
-                    CommentsCount: 0,
-                    CountUncompletedTodos: u.ToDos.Where(td => !td.IsComplete).Count(),
-                    MaxCommentPost: u.Posts.Where(p => p.Body.Length > 80).OrderByDescending(p => p.Comments).FirstOrDefault(),
-                    MaxLikesPost: u.Posts.OrderByDescending(p => p.Likes).FirstOrDefault()
+                .Select(u => (new Tuple<User, Post, int, int, Post, Post> (
+                    u,
+                    u.Posts.OrderByDescending(c => c.CreateAt).FirstOrDefault(),
+                    u.Posts.OrderByDescending(c => c.CreateAt).FirstOrDefault().Comments.Count,
+                    u.ToDos.Where(td => !td.IsComplete).Count(),
+                    u.Posts.Where(p => p.Body.Length > 80).OrderByDescending(p => p.Comments).FirstOrDefault(),
+                    u.Posts.OrderByDescending(p => p.Likes).FirstOrDefault())
                 )).FirstOrDefault();
-            result.CommentsCount = result.LastPost.Comments.Count;
             return result;
         }
 
