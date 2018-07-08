@@ -1,0 +1,33 @@
+﻿@model bsa2018_ASPNET.Models.Post
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+<br/>
+<ol class="breadcrumb">
+    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li><a href="@Url.Action("Index","Users")">Users</a></li>
+    <li><a href="@Url.Action("User","Users", new { id=Model.UserId})">Posts</a></li>
+    <li class="active">@Model.Title</li>
+</ol>
+
+<h2>@Model.Title</h2>
+
+<div>
+    <p style="font-size:20px; text-indent:20px">@Model.Body</p><br />
+    <p style="text-align:left">
+        Likes: <span class="badge">@Model.Likes</span><br />
+        Creater At: <span class="badge">@Model.CreateAt.ToString()</span>
+    </p>
+    <br/>
+    <h3>Commentaries <span class="badge">@Model.Comments.Count</span></h3>
+    @foreach (var comment in Model.Comments)
+    {
+        <h4>@comment.Body</h4>
+        <p>
+            Likes: <span class="badge">@comment.Likes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            Creater At: <span class="badge">@comment.CreateAt.ToString()</span><br />
+        </p>
+        <hr />
+    }
+</div>

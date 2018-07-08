@@ -1,0 +1,67 @@
+﻿@model bsa2018_ASPNET.Models.User
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+<br />
+<ol class="breadcrumb">
+    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li><a href="@Url.Action("Index","Users")">Users</a></li>
+    <li class="active">@Model.Name</li>
+</ol>
+
+<h2>@Model.Name</h2>
+
+<div class="row">
+    <hr />
+    <img src="@Model.Avatar" class="col-xs-4" style="width:200px" />
+    <dl class="dl-horizontal col-xs-8">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Avatar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+
+    <div class="list-group col-xs-12" style="margin-top:20px;">
+        <a id="showPosts" class="list-group-item active col-xs-6">
+            Posts <span class="badge">@Model.Posts.Count</span>
+        </a>
+        <a id="showToDos" class="list-group-item col-xs-6">ToDos  <span class="badge">@Model.ToDos.Count</span></a>
+        <div id="posts" class="col-xs-12">
+            @foreach (var post in Model.Posts)
+            {
+                <h3>@Html.ActionLink(@post.Title, "Post", "Users", new { post.Id }) - @post.CreateAt.ToString()</h3>
+                <h4>Likes: <span class="badge">@post.Likes</span></h4>
+                <hr />
+            }
+        </div>
+        <div id="toDos" class="col-xs-12" style="display:none">
+            @foreach (var toDo in Model.ToDos)
+            {
+                <h3>@Html.ActionLink(@toDo.Name, "ToDo", "Users", new { toDo.Id }) - @toDo.CreateAt.ToString()</h3>
+                <hr />
+            }
+        </div>
+    </div>
+</div>
+

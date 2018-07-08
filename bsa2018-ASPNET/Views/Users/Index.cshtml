@@ -1,0 +1,27 @@
+﻿@model IEnumerable<bsa2018_ASPNET.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+<br/>
+<ol class="breadcrumb">
+    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li class="active">Users</li>
+
+</ol>
+<h2>All users in collection</h2>
+<div class="row">
+    @foreach (var user in Model)
+    {
+        <div class="col-xs-12" style="height:200px;border-bottom:1px solid silver">
+            <br /><br />
+            <div class="col-xs-4" style="background-image:url(@user.Avatar); background-attachment:cover;background-repeat:no-repeat;height:100%">
+            </div>
+            <div class="col-xs-8">
+                <h3>@Html.ActionLink(@user.Name, "User", "Users", new { user.Id })</h3>
+                <h4>@user.Email</h4><br/>
+                <h5>Was created at: @user.CreateAt.ToString("d")</h5>
+            </div>
+        </div>
+    }
+</div>

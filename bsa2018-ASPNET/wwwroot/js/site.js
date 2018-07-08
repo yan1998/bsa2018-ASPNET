@@ -11,3 +11,17 @@ $(".showTable").click(function (event) {
         $("#" + idTable).hide();
     }
 });
+
+$("#showPosts").click(function () {
+    $("#showToDos").removeClass("active");
+    $(this).addClass("active");
+    $("#posts").show("quick");
+    $("#toDos").hide("quick");
+});
+
+$("#showToDos").click(function () {
+    $("#showPosts").removeClass("active");
+    $(this).addClass("active");
+    $("#posts").hide("quick");
+    $("#toDos").show("quick");
+});

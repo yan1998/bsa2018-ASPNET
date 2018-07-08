@@ -1,0 +1,19 @@
+﻿@model bsa2018_ASPNET.Models.ToDo
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+<br />
+<ol class="breadcrumb">
+    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li><a href="@Url.Action("Index","Users")">Users</a></li>
+    <li><a href="@Url.Action("User","Users", new { id=Model.UserId})">ToDos</a></li>
+    <li class="active">@Model.Name</li>
+</ol>
+
+<h2>@Model.Name</h2>
+
+<div>
+    <h4>Is Completed: <span class="badge">@Model.IsComplete</span></h4>
+    <h4>Create At: <span class="badge">@Model.CreateAt.ToString()</span></h4>
+</div>
