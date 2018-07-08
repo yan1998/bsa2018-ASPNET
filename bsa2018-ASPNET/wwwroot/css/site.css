@@ -26,6 +26,14 @@
     margin: 15px;
 }
 
+.showTable {
+    cursor:pointer;
+}
+.showTable:hover {
+    color:blue;
+    text-decoration:underline;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

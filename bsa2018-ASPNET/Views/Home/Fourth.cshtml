@@ -24,12 +24,24 @@
                 </div>
             </td>
             <td>
-                <ul>
+                <p class="showTable" data-id="@user.Id">Click for show</p>
+                <table id="todos@(user.Id)" class="table table-bordered" style="display:none">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>IsComplete</th>
+                            <th>CreateAt</th>
+                        </tr>
+                    </thead>
                     @foreach (var toDo in user.ToDos)
                     {
-                        <li>@toDo.Name - @toDo.IsComplete - <span class="badge">@toDo.CreateAt.ToString("d")</span></li>
+                        <tr>
+                            <td>@toDo.Name</td>
+                            <td>@toDo.IsComplete</td>
+                            <td> <span class="badge">@toDo.CreateAt.ToString("d")</span></td>
+                        </tr>
                     }
-                </ul>
+                </table>
             </td>
         </tr>
     }
