@@ -10,19 +10,23 @@
     <input type="text" id="userId" name="userId" placeholder="Enter user id" />
     <input type="submit" value="Get result" />
 }
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Post</th>
+                <th>Comments count</th>
+            </tr>
+        </thead>
 
-<div id="result">
-    @if (Model != null)
-    {
-        if (Model.Count == 0)
+        @foreach (var item in Model)
         {
-            <p>Empty set!</p>
+        <tr>
+            <td>@item.Item1.Body -@item.Item1.CreateAt.ToString("d")</td>
+            <td>@item.Item2</td>
+        </tr>
         }
-        foreach (var item in Model)
-        {
-            <h3>@item.Item1.Body -@item.Item1.CreateAt.ToString("d")</h3>
-            <h4 style="text-align:right">Commentaries: @item.Item2</h4>
-            <hr />
-        }
-    }
-</div>
+
+    </table>
+}

@@ -4,22 +4,33 @@
 }
 
 <h2>Fourth query</h2>
-<div class="row">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>ToDos</th>
+        </tr>
+    </thead>
     @foreach (var user in Model)
     {
-        <div class="col-xs-12" style="margin-bottom:50px;">
-            <div class="col-xs-2">
-                <img src="@user.Avatar" />
-            </div>
-            <div class="col-xs-10">
-                <h3>@user.Name - @user.Email</h3>
+        <tr>
+            <td>
+                <div class="col-xs-12" style="height:150px">
+                    <div style="background-image:url(@user.Avatar); background-attachment:cover;background-repeat:no-repeat;height:100%" class="col-xs-4">
+                    </div>
+                    <div class=" col-xs-8">
+                        <p>@user.Name - @user.Email</p>
+                    </div>
+                </div>
+            </td>
+            <td>
                 <ul>
-                @foreach (var toDo in user.ToDos)
-                {
-                    <li>@toDo.Name - @toDo.IsComplete - <span class="badge">@toDo.CreateAt.ToString("d")</span></li>
-                }
-                    </ul>
-            </div>
-        </div>
+                    @foreach (var toDo in user.ToDos)
+                    {
+                        <li>@toDo.Name - @toDo.IsComplete - <span class="badge">@toDo.CreateAt.ToString("d")</span></li>
+                    }
+                </ul>
+            </td>
+        </tr>
     }
-</div>
+</table>

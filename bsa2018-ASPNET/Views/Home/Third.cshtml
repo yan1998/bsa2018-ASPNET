@@ -11,19 +11,24 @@
     <input type="submit" value="Get result" />
 }
 
-<div id="result">
-    @if (Model != null)
-    {
-        <h3>Completed tasks:</h3>
-        <br />
-        if (Model.Count == 0)
+@if (Model != null)
+{
+
+    <h3>Completed tasks:</h3>
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ToDo</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
         {
-            <p>Empty set!</p>
+            <tr>
+                <td> @item.Item1</td>
+                <td> @item.Item2</td>
+            </tr>
         }
-        foreach (var item in Model)
-        {
-            <h4>@item.Item1 - @item.Item2</h4>
-            <hr />
-        }
-    }
-</div>
+    </table>
+}

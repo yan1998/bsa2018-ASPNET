@@ -11,18 +11,24 @@
     <input type="submit" value="Get result" />
 }
 
-<div id="result">
-    @if (Model != null)
-    {
-        if (Model.Count == 0)
+
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Commentary</th>
+                <th>Create At</th>
+                <th>Likes</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
         {
-            <p>Empty set!</p>
+            <tr>
+                <td>@item.Body</td>
+                <td><span class="badge">@item.CreateAt.ToString("d")</span></td>
+                <td>@item.Likes</td>
+            </tr>
         }
-        foreach (var item in Model)
-        {
-            <h4>@item.Body <span class="badge">@item.CreateAt.ToString("d")</span></h4>
-            <p>Likes: @item.Likes</p>
-            <hr />
-        }
-    }
-</div>
+    </table>
+}
