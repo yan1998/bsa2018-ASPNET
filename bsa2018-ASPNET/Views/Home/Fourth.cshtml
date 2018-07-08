@@ -25,7 +25,7 @@
                     <div style="background-image:url(@user.Avatar); background-attachment:cover;background-repeat:no-repeat;height:100%" class="col-xs-4">
                     </div>
                     <div class=" col-xs-8">
-                        <p>@user.Name - @user.Email</p>
+                        <p>@Html.ActionLink(@user.Name,"User","Users",new { id=user.Id}) - @user.Email</p>
                     </div>
                 </div>
             </td>
