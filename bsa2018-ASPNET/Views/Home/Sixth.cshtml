@@ -18,7 +18,7 @@
 <br />
 @if (Model != null)
 {
-    <h4>@Model.Item1</h4>
+    <h4>@Html.ActionLink(@Model.Item1.Title,"Post","Users",new { id=@Model.Item1.Id})</h4>
     <p>A comment with the biggest body: @Model.Item2</p>
     <p>A comment with the biggest count of likes: @Model.Item3</p>
     <p>Count od commentaries with 0 likes or body length > 80: @Model.Item4</p>

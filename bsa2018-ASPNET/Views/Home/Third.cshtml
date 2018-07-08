@@ -32,7 +32,7 @@
         {
             <tr>
                 <td> @item.Item1</td>
-                <td> @item.Item2</td>
+                <td> @Html.ActionLink(@item.Item2,"ToDo","Users",new{ id=item.Item1 })</td>
             </tr>
         }
     </table>

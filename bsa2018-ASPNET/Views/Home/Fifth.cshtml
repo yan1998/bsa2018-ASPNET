@@ -29,9 +29,9 @@
         </div>
     </div>
     <br />
-    <p>Last user post: @Model.Item2</p>
+    <p>Last user post: @if (@Model.Item2 != null) {@Html.ActionLink(@Model.Item2.Title, "Post", "Users", new { id = Model.Item2.Id })}</p>
     <p>Count of commented on last post: @Model.Item3</p>
     <p>Count of uncompleted tasks: @Model.Item4</p>
-    <p>The most popular post (with body comment over 80 symbols): @Model.Item5</p>
-    <p>The most popular post (with the biggest count of likes): @Model.Item6</p>
+    <p>The most popular post (with body comment over 80 symbols): @if (@Model.Item5 != null) { @Html.ActionLink(@Model.Item5.Title, "Post", "Users", new { id = Model.Item5.Id })}</p>
+    <p>The most popular post (with the biggest count of likes):  @if (@Model.Item6 != null) {@Html.ActionLink(@Model.Item6.Title, "Post", "Users", new { id = Model.Item6.Id })}</p>
 }

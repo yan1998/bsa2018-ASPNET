@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Second Query";
 }
-<br/>
+<br />
 <ol class="breadcrumb">
     <li><a href="@Url.Action("Index","Home")">Home</a></li>
     <li class="active">Second query</li>
@@ -16,7 +16,6 @@
     <input type="submit" value="Get result" />
 }
 
-
 @if (Model != null)
 {
     <table class="table table-hover">
@@ -25,6 +24,7 @@
                 <th>Commentary</th>
                 <th>Create At</th>
                 <th>Likes</th>
+                <th>Post</th>
             </tr>
         </thead>
         @foreach (var item in Model)
@@ -33,6 +33,7 @@
                 <td>@item.Body</td>
                 <td><span class="badge">@item.CreateAt.ToString("d")</span></td>
                 <td>@item.Likes</td>
+                <td>@Html.ActionLink("Post","Post","Users",new {id= item.PostId })</td>
             </tr>
         }
     </table>

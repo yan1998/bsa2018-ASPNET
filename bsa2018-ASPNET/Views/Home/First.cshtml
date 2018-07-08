@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Item1.Body -@item.Item1.CreateAt.ToString("d")</td>
+                <td>@Html.ActionLink(@item.Item1.Body, "Post", "Users", new { item.Item1.Id}) - @item.Item1.CreateAt.ToString("d")</td>
                 <td>@item.Item2</td>
             </tr>
         }

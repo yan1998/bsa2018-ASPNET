@@ -42,7 +42,7 @@
                     @foreach (var toDo in user.ToDos)
                     {
                         <tr>
-                            <td>@toDo.Name</td>
+                            <td>@Html.ActionLink(@toDo.Name,"ToDo","Users",new { id=toDo.Id})</td>
                             <td>@toDo.IsComplete</td>
                             <td> <span class="badge">@toDo.CreateAt.ToString("d")</span></td>
                         </tr>
