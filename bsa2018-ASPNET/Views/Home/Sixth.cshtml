@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "Sixth query";
 }
+<br />
+<ol class="breadcrumb">
+    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li class="active">Sixth query</li>
+</ol>
 
 <h2>Sixth query</h2>
 
@@ -19,6 +24,6 @@
     <p>Count od commentaries with 0 likes or body length > 80: @Model.Item4</p>
 }
 else
-{ 
+{
     <p>Id is incorrect</p>
 }

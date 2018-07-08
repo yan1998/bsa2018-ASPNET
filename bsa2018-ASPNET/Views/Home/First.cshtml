@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "First Query";
 }
+<br />
+<ol class="breadcrumb">
+    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li class="active">First query</li>
+</ol>
 
 <h2>First Query</h2>
 
@@ -22,10 +27,10 @@
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>@item.Item1.Body -@item.Item1.CreateAt.ToString("d")</td>
-            <td>@item.Item2</td>
-        </tr>
+            <tr>
+                <td>@item.Item1.Body -@item.Item1.CreateAt.ToString("d")</td>
+                <td>@item.Item2</td>
+            </tr>
         }
 
     </table>
